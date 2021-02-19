@@ -17,7 +17,7 @@ namespace Business.Concrete
         }
         public void Add(Gamer gamer)
         {
-            MernisCheck mernisCheck = new MernisCheck();
+            IMernisService mernisCheck = new MernisCheck();
             if (mernisCheck.Validate(gamer))
             {
                 _gamerDal.Add(gamer);

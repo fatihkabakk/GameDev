@@ -1,6 +1,5 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.InMemory;
-using Entities.Abstract;
 using Entities.Concrete;
 using System;
 
@@ -17,21 +16,18 @@ namespace Application
             Game gtav = new Game() { GameId = 1, Name = "GTA V", Developer = "Rockstar Games", ReleaseDate = "17 Eylül 2013", UnitPrice = 156 };
             Game pubg = new Game() { GameId = 2, Name = "PUBG", Developer = "KRAFTON, Inc.", ReleaseDate = "21 Aralık 2017", UnitPrice = 87 };
 
-            PlayerManager playerManager = new PlayerManager(new InMemoryGamerDal());
             Console.WriteLine("*********************************************");
+            PlayerManager playerManager = new PlayerManager(new InMemoryGamerDal());
             playerManager.Add(gamer1);
-
             playerManager.Add(gamer2);
             playerManager.Add(gamer3);
             playerManager.Delete(gamer2);
             playerManager.BuyGame(gamer1, pubg);
+            
             Console.WriteLine("*********************************************");
             GameManager gameManager = new GameManager(new InMemoryGameDal());
-
             gameManager.Add(gtav);
             gameManager.ApplyDiscount(gtav, new Discount() { Name = "Hot Sales!", DiscountRate = 25 });
-
-            Console.WriteLine(gamer1.UserId + " " + gamer1.Name + " " + gamer1.LastName);
         }
     }
 }
