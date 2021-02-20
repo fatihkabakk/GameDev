@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Business.ValidationRules
 {
-    public class MernisCheck : IMernisService
+    public class MernisManager : IValidationService
     {
         public bool Validate(Gamer gamer)
         {

@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using Entities.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -19,11 +18,6 @@ namespace Business.Concrete
         public void Add(Game game)
         {
             _gameDal.Add(game);
-        }
-
-        public void ApplyDiscount(Game game, Discount discount)
-        {
-            _gameDal.ApplyDiscount(game, discount);
         }
 
         public void Delete(Game game)

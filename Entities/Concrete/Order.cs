@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Discount : IEntity
+    public class Order
     {
-        public string Name { get; set; }
-        public double DiscountRate { get; set; }
+        public int BuyerId { get; set; }
+        public Double Price { get; set; }
     }
 }

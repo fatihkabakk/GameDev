@@ -1,4 +1,7 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
+using Business.ValidationRules;
+using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -17,17 +20,30 @@ namespace Application
             Game pubg = new Game() { GameId = 2, Name = "PUBG", Developer = "KRAFTON, Inc.", ReleaseDate = "21 Aralık 2017", UnitPrice = 87 };
 
             Console.WriteLine("*********************************************");
-            PlayerManager playerManager = new PlayerManager(new InMemoryGamerDal());
-            playerManager.Add(gamer1);
-            playerManager.Add(gamer2);
-            playerManager.Add(gamer3);
-            playerManager.Delete(gamer2);
-            playerManager.BuyGame(gamer1, pubg);
+            IGamerDal gamerDal = new InMemoryGamerDal();
+            IValidationService validationService = new MernisManager();
+            
+            GamerManager gamerManager = new GamerManager(gamerDal, validationService);
+            gamerManager.Add(gamer1);
+            gamerManager.Add(gamer2);
+            gamerManager.Add(gamer3);
+            gamerManager.Delete(gamer2);
+            Console.WriteLine("*********************************************");
+
+            Console.WriteLine("\n*********************************************");
+            IGameDal gameDal = new InMemoryGameDal();
+            ICampaignService campaignService = new CampaignManager();
+
+            GameManager gameManager = new GameManager(gameDal);
+            gameManager.Add(gtav);
+            gameManager.Add(pubg);
+
+            OrderManager orderManager = new OrderManager(campaignService);
+            orderManager.CreateCampaignOrder(gamer1, gtav, new Campaign { Name = "Hot Sales!", DiscountRate = 25 });
+            orderManager.CreateCampaignOrder(gamer2, pubg, new Campaign { Name = "Winter Sales!", DiscountRate = 50 });
             
             Console.WriteLine("*********************************************");
-            GameManager gameManager = new GameManager(new InMemoryGameDal());
-            gameManager.Add(gtav);
-            gameManager.ApplyDiscount(gtav, new Discount() { Name = "Hot Sales!", DiscountRate = 25 });
+            Console.ReadKey();
         }
     }
 }

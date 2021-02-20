@@ -8,17 +8,18 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class PlayerManager : IPlayerService
+    public class GamerManager : IGamerService
     {
         IGamerDal _gamerDal;
-        public PlayerManager(IGamerDal gamerDal)
+        IValidationService _validationService;
+        public GamerManager(IGamerDal gamerDal, IValidationService validationService)
         {
             _gamerDal = gamerDal;
+            _validationService = validationService;
         }
         public void Add(Gamer gamer)
         {
-            IMernisService mernisCheck = new MernisCheck();
-            if (mernisCheck.Validate(gamer))
+            if (_validationService.Validate(gamer))
             {
                 _gamerDal.Add(gamer);
             }
@@ -26,11 +27,6 @@ namespace Business.Concrete
             {
                 Console.WriteLine("Kullanıcı bilgileri hata içerdiğinden dolayı kayıt yapılamadı!");
             }
-        }
-
-        public void BuyGame(Gamer gamer, Game game)
-        {
-            _gamerDal.BuyGame(gamer, game);
         }
 
         public void Delete(Gamer gamer)

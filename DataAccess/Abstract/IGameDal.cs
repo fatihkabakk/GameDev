@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
         void Add(Game game);
         void Update(Game game);
         void Delete(Game game);
-        void ApplyDiscount(Game game, Discount discount);
+        void ApplyDiscount(Game game, Campaign discount);
     }
 }

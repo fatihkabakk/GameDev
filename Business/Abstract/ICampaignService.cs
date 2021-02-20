@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IGameService
+    public interface ICampaignService
     {
-        void Add(Game game);
-        void Delete(Game game);
-        void Update(Game game);
-
+        void ApplyCampaign(Game game, Campaign campaign);
     }
 }

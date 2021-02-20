@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IGameService
+    public interface IValidationService
     {
-        void Add(Game game);
-        void Delete(Game game);
-        void Update(Game game);
-
+        bool Validate(Gamer gamer);
     }
 }

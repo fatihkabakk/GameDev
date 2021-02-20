@@ -10,10 +10,10 @@ namespace DataAccess.Concrete.InMemory
     {
         public void Add(Game game)
         {
-            Console.WriteLine(game.Name + " adlı oyun başarıyla sisteme eklendi!");
+            Console.WriteLine(game.Name + " adlı oyun sisteme " + game.UnitPrice + " TL olarak eklendi!");
         }
 
-        public void ApplyDiscount(Game game, Discount discount)
+        public void ApplyDiscount(Game game, Campaign discount)
         {
             double result = game.UnitPrice - (game.UnitPrice * (discount.DiscountRate * 0.01));
             game.UnitPrice = result;
