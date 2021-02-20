@@ -16,13 +16,13 @@ namespace Business.Concrete
 
         public void CreateCampaignOrder(Gamer gamer, Game game, Campaign campaign)
         {
-            _campaignService.ApplyCampaign(game, campaign);
-            Console.WriteLine(gamer.Name + " adlı oyuncu " + game.Name + " adlı oyunu " + game.UnitPrice + " TL karşılığında " + campaign.Name + " kampanyası ile satın aldı");
+            double discountPrice = _campaignService.ApplyCampaign(game, campaign);
+            Console.WriteLine(gamer.Name + " adlı oyuncu " + game.Name + " adlı oyunu " + campaign.Name + " kampanyası ile " + discountPrice + " TL'ye satın aldı");
         }
 
         public void CreateOrder(Gamer gamer, Game game)
         {
-            Console.WriteLine(gamer.Name + " adlı oyuncu " + game.Name + " adlı oyunu " + game.UnitPrice + " TL karşılığında satın aldı");
+            Console.WriteLine(gamer.Name + " adlı oyuncu " + game.Name + " adlı oyunu " + game.UnitPrice + " TL'ye satın aldı");
         }
     }
 }

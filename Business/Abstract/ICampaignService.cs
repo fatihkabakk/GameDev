@@ -7,6 +7,6 @@ namespace Business.Abstract
 {
     public interface ICampaignService
     {
-        void ApplyCampaign(Game game, Campaign campaign);
+        double ApplyCampaign(Game game, Campaign campaign);
     }
 }
